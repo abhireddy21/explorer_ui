@@ -10,14 +10,6 @@ const menu=(
    }}
   items={[
     {
-      label:"Create Folder",
-      key:"folder"
-    },
-    {
-      label:"Create File",
-      key:"file"
-    },
-    {
       label:"Rename",
       key:"rename"
     },
@@ -34,18 +26,17 @@ const menu=(
 
 const [showInput,setShowInput]=useState({
   visible:false,
-  type:null
+  type:""
 })
 
 const [expand,setExpand]=useState(false);
 console.log(explorer.name)
 
-const  handleNewFolder = (e)=>{
+const  handleNewFolder = (e,type)=>{
   e.stopPropagation();
-
   setShowInput({
     visible:true,
-    type:"folder"
+    type
   })
 }
 
@@ -58,15 +49,21 @@ const  handleNewFolder = (e)=>{
       <Dropdown overlay={menu} trigger={["contextMenu"]}>
       <div className="folder" onClick={()=>setExpand(!expand)}>
         <span> 📁 {explorer.name}</span>
+        <div className='folder-btns'>
+          <div onClick={(e)=> handleNewFolder(e,"folder")}><i class="bi bi-folder-plus"></i></div>
+          <div onClick={(e)=> handleNewFolder(e,"file")}><i class="bi bi-file-earmark-plus"></i></div>
+        </div>
         </div>
         </Dropdown> 
         <div style={{display:expand?"block":"none",paddingLeft:25}}>
+
           {showInput.visible && 
             <div className="input-cnt">
-              <span>{showInput.type=="folder"?"📁":"📄"}</span>
+              <span>{showInput.type==="file"?  "📄" : "📁"  } </span> 
               <input className="input"/>
             </div>
           }
+          
           {explorer.children.map((exp)=>{
               return <Folder explorer={exp} key={exp.id}/>
           })}
@@ -74,9 +71,11 @@ const  handleNewFolder = (e)=>{
     </div>
   )}else{
     return(
+      <Dropdown overlay={menu} trigger={["contextMenu"]}>
       <div className="file">
       <span> 📄 {explorer.name}</span>
       </div>
+      </Dropdown>
     )
   }
 }

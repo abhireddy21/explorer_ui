@@ -1,0 +1,92 @@
+{
+      "id":"21",
+      "name":"Vasu's Workspace",
+      "type":"folder",
+      "children":[
+         {
+            "id":"22",
+            "name":"default",
+            "type":"folder",
+            "children":[
+               
+            ]
+         },
+         {
+            "id":"68",
+            "name":"Demo",
+            "type":"folder",
+            "children":[
+               
+            ]
+         },
+         {
+            "id":"67",
+            "name":"Root",
+            "type":"folder",
+            "children":[
+               {
+                  "id":"18d4f0d06cc94dcb257bc8c7cef10b7a",
+                  "name":"pipeline 1",
+                  "type":"pipeline",
+                  "children":[
+                     
+                  ]
+               },
+               {
+                  "id":"f5976768f7af5b7a4620e9a666bd3ebd",
+                  "name":"sales",
+                  "type":"pipeline",
+                  "children":[
+                     
+                  ]
+               },
+               {
+                  "id":"69",
+                  "name":"Sub-folder",
+                  "type":"folder",
+                  "children":[
+                     {
+                        "id":"1fdae244ac209107a4614785106b5514",
+                        "name":"customers",
+                        "type":"pipeline",
+                        "children":[
+                           
+                        ]
+                     },
+                     {
+                        "id":"70",
+                        "name":"level - 3",
+                        "type":"folder",
+                        "children":[
+                           {
+                              "id":"ee00fda073709400a8c6877b638468d6",
+                              "name":"employees",
+                              "type":"pipeline",
+                              "children":[
+                                 
+                              ]
+                           }
+                        ]
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "id":"71",
+            "name":"Testing pipelines",
+            "type":"folder",
+            "children":[
+               {
+                  "id":"72",
+                  "name":"Monday test",
+                  "type":"folder",
+                  "children":[
+                     
+                  ]
+               }
+            ]
+         }
+      ]
+   }
+

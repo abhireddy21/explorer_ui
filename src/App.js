@@ -1,23 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
-
+import {useState} from 'react';
+// import explorer from './explorer.json'
+import Folder from './components/Folder';
+import axios from 'axios';
 function App() {
+  const [explorerData,setExplorerData]=useState([])
+  // const [explorerData,setExplorerData]=useState(explorer)
+ 
+  
+  axios.get("http://192.168.0.121/dextrus/explorer")
+  .then(resp=>{
+    JSON.stringify(resp);
+    console.log(resp.data);
+    setExplorerData(resp);
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Folder explorer={explorerData}/>
     </div>
   );
 }

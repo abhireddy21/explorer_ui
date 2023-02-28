@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
-import {useState} from 'react';
-import explorer from './explorer.json'
+import { useState, useEffect } from 'react';
 import Folder from './components/Folder';
 import axios from 'axios';
+
 function App() {
-  // const [explorerData,setExplorerData]=useState([])
-  const [explorerData,setExplorerData]=useState(explorer)
- 
-  
-  // axios.get("http://192.168.0.121/dextrus/explorer")
-  // .then(resp=>{
-  //   JSON.stringify(resp);
-  //   console.log(resp.data);
-  //   setExplorerData(resp);
-  // })
+  const [explorerData, setExplorerData] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/dextrus/explorer", { withCredentials: true })
+      .then(resp => {
+        console.log(resp.data)
+        setExplorerData(resp.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
 
   return (
     <div>
-      <Folder explorer={explorerData}/>
+      <Folder explorer={explorerData} />
     </div>
   );
 }

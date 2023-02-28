@@ -1,13 +1,15 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import Folder from './components/Folder';
 import axios from 'axios';
+import IP from './components/Config';
 
 function App() {
   const [explorerData, setExplorerData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/dextrus/explorer", { withCredentials: true })
+    axios.get(IP+"/dextrus/explorer", { withCredentials: true })
       .then(resp => {
         console.log(resp.data)
         setExplorerData(resp.data);
@@ -21,7 +23,13 @@ function App() {
   return (
     <div>
       <Folder explorer={explorerData} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/home" element={<App/>}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
+
   );
 }
 

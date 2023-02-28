@@ -34,6 +34,7 @@ console.log(explorer.name)
 
 const  handleNewFolder = (e,type)=>{
   e.stopPropagation();
+  setExpand(true)
   setShowInput({
     visible:true,
     type
@@ -46,9 +47,10 @@ const  handleNewFolder = (e,type)=>{
   return (
     
     <div style={{marginTop:"5px",cursor:"pointer"}}>
+      
       <Dropdown overlay={menu} trigger={["contextMenu"]}>
       <div className="folder" onClick={()=>setExpand(!expand)}>
-        <span> 📁 {explorer.name}</span>
+        <span>📁 {explorer.name}</span>
         <div className='folder-btns'>
           <div onClick={(e)=> handleNewFolder(e,"folder")}><i class="bi bi-folder-plus"></i></div>
           <div onClick={(e)=> handleNewFolder(e,"file")}><i class="bi bi-file-earmark-plus"></i></div>
@@ -57,15 +59,17 @@ const  handleNewFolder = (e,type)=>{
         </Dropdown> 
         <div style={{display:expand?"block":"none",paddingLeft:25}}>
 
+          {/* For adding new Inputs */}
           {showInput.visible && 
             <div className="input-cnt">
               <span>{showInput.type==="file"?  "📄" : "📁"  } </span> 
-              <input className="input"/>
+              <input type="text" autoFocus onBlur={()=>setShowInput({...showInput,visible:false})} className="input"/>
             </div>
           }
-          
+
+          {/* Children folders tree structure */}
           {explorer.children.map((exp)=>{
-              return <Folder explorer={exp} key={exp.id}/>
+              return  <Folder explorer={exp} key={exp.id}/>
           })}
         </div>
     </div>

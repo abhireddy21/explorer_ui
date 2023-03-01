@@ -6,18 +6,19 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Folder({ explorer }) {
-// const navigate = useNavigate();
-
 
   const menu = (
     <Menu
       onClick={({ key }) => {
-        console.log(key);
-        console.log("delete:"+explorer.id)
+        
         if(key==="delete"){
           axios
         .delete(IP + "/dextrus/" + explorer.id);
         window.location.reload();
+        }
+        else if(key==="rename"){
+          console.log("rename:"+explorer.name)
+          setRename(true)
         }
       }}
       items={[
@@ -33,6 +34,8 @@ export default function Folder({ explorer }) {
       ]}
     ></Menu>
   );
+
+  const [rename,setRename]=useState(false);
 
   const [showInput, setShowInput] = useState({
     visible: false,
